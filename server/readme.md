@@ -25,4 +25,4 @@ CONTAINER ID  IMAGE         COMMAND             CREATED      STATUS           PO
 
 ## DB Schema
 
-![DB_schema_image](./assets/sbC_db.png)
+![DB_schema_image](./assets/sbC_db.drawio.png)

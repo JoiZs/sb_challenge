@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Genre {
+  FANTASY
+  SCIENCEFICTION
+  DYSTOPIAN
+  ADVENTURE
+  ROMANCE
+  MYSTERY
+  HORROR
+  THRILLER
+  HISTORIALFICTION
+  CHILDRENFICTION
+}
+
+model Author {
+  author_id  String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name       String
+  biography  String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  Book       Book[]
+}
+
+model Publisher {
+  publisher_id   String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name           String
+  address        String
+  contact_number String?
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+  Book           Book[]
+}
+
+model Book {
+  book_id               String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title                 String
+  author                Author      @relation(fields: [authorAuthor_id], references: [author_id])
+  publication_date      DateTime
+  publisher             Publisher   @relation(fields: [publisherPublisher_id], references: [publisher_id])
+  isbn                  String
+  genre                 Genre[]
+  created_at            DateTime    @default(now())
+  updated_at            DateTime    @updatedAt
+  author_id             String
+  Inventory             Inventory[]
+  publisherPublisher_id String      @db.Uuid
+  authorAuthor_id       String      @db.Uuid
+}
+
+model Inventory {
+  entry_id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  book            Book     @relation(fields: [bookBook_id], references: [book_id])
+  quantity        Int
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+  authorAuthor_id String   @db.Uuid
+  bookBook_id     String   @db.Uuid
+}
