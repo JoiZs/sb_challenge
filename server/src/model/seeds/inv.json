@@ -1,0 +1,290 @@
+[
+  {
+    "book": {
+      "title": "Hamlet",
+      "genre": ["DRAMA"],
+      "isbn": "9780743477123",
+      "publication_date": "1600-01-01T00:00:00.000Z",
+      "author": {
+        "name": "William Shakespeare",
+        "biography": "English playwright and poet, widely regarded as the greatest writer in the English language."
+      },
+      "publisher": {
+        "name": "McGraw-Hill Education",
+        "address": "1325 Avenue of the Americas, New York, NY 10019, USA",
+        "contact_number": "+1 646-766-2000"
+      }
+    },
+    "quantity": 10
+  },
+  {
+    "book": {
+      "title": "Pride and Prejudice",
+      "genre": ["ROMANCE", "HISTORIALFICTION"],
+      "isbn": "9780141439518",
+      "publication_date": "1813-01-28T00:00:00.000Z",
+      "author": {
+        "name": "Jane Austen",
+        "biography": "English novelist known for works such as Pride and Prejudice, which critique the British landed gentry."
+      },
+      "publisher": {
+        "name": "Penguin Random House",
+        "address": "1745 Broadway, New York, NY 10019, USA",
+        "contact_number": "+1 212-782-9000"
+      }
+    },
+    "quantity": 12
+  },
+  {
+    "book": {
+      "title": "Great Expectations",
+      "genre": ["DRAMA", "HISTORIALFICTION"],
+      "isbn": "9780141439563",
+      "publication_date": "1861-01-01T00:00:00.000Z",
+      "author": {
+        "name": "Charles Dickens",
+        "biography": "English writer and social critic, known for creating some of the world's best-known fictional characters."
+      },
+      "publisher": {
+        "name": "HarperCollins",
+        "address": "195 Broadway, New York, NY 10007, USA",
+        "contact_number": "+1 212-207-7000"
+      }
+    },
+    "quantity": 8
+  },
+  {
+    "book": {
+      "title": "Adventures of Huckleberry Finn",
+      "genre": ["ADVENTURE", "MYSTERY"],
+      "isbn": "9780142437179",
+      "publication_date": "1884-12-10T00:00:00.000Z",
+      "author": {
+        "name": "Mark Twain",
+        "biography": "American writer, humorist, and entrepreneur, best known for The Adventures of Tom Sawyer and Huckleberry Finn."
+      },
+      "publisher": {
+        "name": "Simon & Schuster",
+        "address": "1230 Avenue of the Americas, New York, NY 10020, USA",
+        "contact_number": "+1 212-698-7000"
+      }
+    },
+    "quantity": 3
+  },
+  {
+    "book": {
+      "title": "War and Peace",
+      "genre": ["HISTORIALFICTION", "DRAMA"],
+      "isbn": "9780143039990",
+      "publication_date": "1869-01-01T00:00:00.000Z",
+      "author": {
+        "name": "Leo Tolstoy",
+        "biography": "Russian author known for his novels War and Peace and Anna Karenina, which are regarded as literary masterpieces."
+      },
+      "publisher": {
+        "name": "Hachette Book Group",
+        "address": "1290 Avenue of the Americas, New York, NY 10104, USA",
+        "contact_number": "+1 212-364-1100"
+      }
+    },
+    "quantity": 9
+  },
+  {
+    "book": {
+      "title": "The Brothers Karamazov",
+      "genre": ["DRAMA", "MYSTERY"],
+      "isbn": "9780374528379",
+      "publication_date": "1880-01-01T00:00:00.000Z",
+      "author": {
+        "name": "Fyodor Dostoevsky",
+        "biography": "Russian novelist and philosopher, noted for Crime and Punishment and The Brothers Karamazov."
+      },
+      "publisher": {
+        "name": "Macmillan Publishers",
+        "address": "120 Broadway, New York, NY 10271, USA",
+        "contact_number": "+1 646-307-5151"
+      }
+    },
+    "quantity": 7
+  },
+  {
+    "book": {
+      "title": "The Old Man and the Sea",
+      "genre": ["ADVENTURE", "DRAMA"],
+      "isbn": "9780684801223",
+      "publication_date": "1952-09-01T00:00:00.000Z",
+      "author": {
+        "name": "Ernest Hemingway",
+        "biography": "American journalist, novelist, and short-story writer known for The Old Man and the Sea and A Farewell to Arms."
+      },
+      "publisher": {
+        "name": "Scholastic Corporation",
+        "address": "557 Broadway, New York, NY 10012, USA",
+        "contact_number": "+1 212-343-6100"
+      }
+    },
+    "quantity": 7
+  },
+  {
+    "book": {
+      "title": "Mrs. Dalloway",
+      "genre": ["DRAMA", "ROMANCE"],
+      "isbn": "9780156628709",
+      "publication_date": "1925-05-14T00:00:00.000Z",
+      "author": {
+        "name": "Virginia Woolf",
+        "biography": "English writer and modernist known for novels like Mrs Dalloway and To the Lighthouse."
+      },
+      "publisher": {
+        "name": "Bloomsbury Publishing",
+        "address": "50 Bedford Square, London WC1B 3DP, UK",
+        "contact_number": "+44 20 7631 5600"
+      }
+    },
+    "quantity": 20
+  },
+  {
+    "book": {
+      "title": "One Hundred Years of Solitude",
+      "genre": ["MYSTERY", "ROMANCE"],
+      "isbn": "9780060883287",
+      "publication_date": "1967-06-05T00:00:00.000Z",
+      "author": {
+        "name": "Gabriel Garcia Marquez",
+        "biography": "Colombian novelist known for works of magical realism, including One Hundred Years of Solitude."
+      },
+      "publisher": {
+        "name": "Pearson Education",
+        "address": "80 Strand, London WC2R 0RL, UK",
+        "contact_number": "+44 20 7010 2000"
+      }
+    },
+    "quantity": 6
+  },
+  {
+    "book": {
+      "title": "The Trial",
+      "genre": ["MYSTERY", "THRILLER"],
+      "isbn": "9780805209990",
+      "publication_date": "1925-01-01T00:00:00.000Z",
+      "author": {
+        "name": "Franz Kafka",
+        "biography": "Czech writer known for surreal and existential works like The Trial and The Metamorphosis."
+      },
+      "publisher": {
+        "name": "Wiley",
+        "address": "111 River Street, Hoboken, NJ 07030, USA",
+        "contact_number": "+1 201-748-6000"
+      }
+    },
+    "quantity": 8
+  },
+  {
+    "book": {
+      "title": "1984",
+      "genre": ["DYSTOPIAN", "THRILLER"],
+      "isbn": "9780451524935",
+      "publication_date": "1949-06-08T00:00:00.000Z",
+      "author": {
+        "name": "George Orwell",
+        "biography": "English novelist and essayist, best known for his novels 1984 and Animal Farm."
+      },
+      "publisher": {
+        "name": "Oxford University Press",
+        "address": "Great Clarendon Street, Oxford OX2 6DP, UK",
+        "contact_number": "+44 1865 556767"
+      }
+    },
+    "quantity": 11
+  },
+  {
+    "book": {
+      "title": "The Odyssey",
+      "genre": ["ADVENTURE", "HISTORIALFICTION"],
+      "isbn": "9780140268867",
+      "publication_date": "0800-01-01T00:00:00.000Z",
+      "author": {
+        "name": "Homer",
+        "biography": "Ancient Greek poet traditionally said to be the author of the epic poems the Iliad and the Odyssey."
+      },
+      "publisher": {
+        "name": "Cambridge University Press",
+        "address": "University Printing House, Shaftesbury Road, Cambridge CB2 8BS, UK",
+        "contact_number": "+44 1223 358331"
+      }
+    },
+    "quantity": 13
+  },
+  {
+    "book": {
+      "title": "Hamlet",
+      "genre": ["DRAMA"],
+      "isbn": "9780743477123",
+      "publication_date": "1600-01-01T00:00:00.000Z",
+      "author": {
+        "name": "William Shakespeare",
+        "biography": "English playwright and poet, widely regarded as the greatest writer in the English language."
+      },
+      "publisher": {
+        "name": "McGraw-Hill Education",
+        "address": "1325 Avenue of the Americas, New York, NY 10019, USA",
+        "contact_number": "+1 646-766-2000"
+      }
+    },
+    "quantity": 8
+  },
+  {
+    "book": {
+      "title": "Moby-Dick",
+      "genre": ["ADVENTURE", "DRAMA"],
+      "isbn": "9780142437247",
+      "publication_date": "1851-11-14T00:00:00.000Z",
+      "author": {
+        "name": "Herman Melville",
+        "biography": "American novelist, short story writer, and poet best known for Moby-Dick."
+      },
+      "publisher": {
+        "name": "Springer Nature",
+        "address": "Tiergartenstrasse 17, 69121 Heidelberg, Germany",
+        "contact_number": "+49 6221 4870"
+      }
+    },
+    "quantity": 5
+  },
+  {
+    "book": {
+      "title": "Wuthering Heights",
+      "genre": ["ROMANCE", "MYSTERY"],
+      "isbn": "9780141439556",
+      "publication_date": "1847-12-01T00:00:00.000Z",
+      "author": {
+        "name": "Emily Bronte",
+        "biography": "English novelist and poet, known for her only novel, Wuthering Heights."
+      },
+      "publisher": {
+        "name": "Elsevier",
+        "address": "Radarweg 29, 1043 NX Amsterdam, Netherlands",
+        "contact_number": "+31 20 485 3911"
+      }
+    },
+    "quantity": 16
+  },
+  {
+    "book": {
+      "title": "The Hobbit",
+      "genre": ["FANTASY", "ADVENTURE"],
+      "isbn": "9780345339683",
+      "publication_date": "1937-09-21T00:00:00.000Z",
+      "author": {
+        "name": "J.R.R. Tolkien",
+        "biography": "English writer, poet, philologist, and author of The Lord of the Rings."
+      },
+      "publisher": {
+        "name": "Cengage Learning",
+        "address": "200 Pier Four Blvd., Boston, MA 02210, USA",
+        "contact_number": "+1 800-354-9706"
+      }
+    },
+    "quantity": 14
+  }
+]
