@@ -32,47 +32,47 @@ enum Genre {
 
 // DB Author Model
 model Author {
-  author_id  String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  author_id  String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name       String
   biography  String?
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  Book       Book[]
-}
-
-// DB Publisher Model
-model Publisher {
-  publisher_id   String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name           String
-  address        String
-  contact_number String?
-  created_at     DateTime @default(now())
-  updated_at     DateTime @updatedAt
-  Book           Book[]
-}
-
-// DB Book Model
-model Book {
-  book_id               String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  title                 String
-  publication_date      DateTime
-  isbn                  String
-  genre                 Genre[]
-  created_at            DateTime   @default(now())
-  updated_at            DateTime   @updatedAt
-  Inventory             Inventory?
-  Author                Author?    @relation(fields: [authorAuthor_id], references: [author_id])
-  authorAuthor_id       String?    @db.Uuid
-  Publisher             Publisher? @relation(fields: [publisherPublisher_id], references: [publisher_id])
-  publisherPublisher_id String?    @db.Uuid
+  created_at DateTime    @default(now())
+  updated_at DateTime    @updatedAt
+  Inventory  Inventory[]
 }
 
 // DB Inventory Model
 model Inventory {
-  entry_id    String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  book        Book     @relation(fields: [bookBook_id], references: [book_id])
-  quantity    Int
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
-  bookBook_id String   @unique @db.Uuid
+  entry_id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title            String
+  author           Author   @relation(fields: [authorAuthor_id], references: [author_id])
+  genre            Genre[]
+  publication_date DateTime
+  isbn             String   @unique
+  authorAuthor_id  String   @db.Uuid
 }
+
+// // DB Publisher Model
+// model Publisher {
+//   publisher_id   String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+//   name           String
+//   address        String
+//   contact_number String?
+//   created_at     DateTime @default(now())
+//   updated_at     DateTime @updatedAt
+// }
+
+// // DB Book Model
+// model Book {
+//   book_id               String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+//   title                 String
+//   publication_date      DateTime
+//   isbn                  String
+//   genre                 Genre[]
+//   created_at            DateTime   @default(now())
+//   updated_at            DateTime   @updatedAt
+//   Inventory             Inventory?
+//   Author                Author?    @relation(fields: [authorAuthor_id], references: [author_id])
+//   authorAuthor_id       String?    @db.Uuid
+//   Publisher             Publisher? @relation(fields: [publisherPublisher_id], references: [publisher_id])
+//   publisherPublisher_id String?    @db.Uuid
+// }
