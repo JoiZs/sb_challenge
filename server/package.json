@@ -8,7 +8,8 @@
     "dev": "nodemon src/index.ts",
     "p-migrate": "prisma migrate dev --create-only --schema ./src/model/schema.prisma",
     "p-migrate-deploy": "prisma migrate deploy --schema ./src/model/schema.prisma",
-    "p-gen": "prisma generate --schema ./src/model/schema.prisma"
+    "p-gen": "prisma generate --schema ./src/model/schema.prisma",
+    "p-seed": "ts-node ./src/model/seeds/seed.ts"
   },
   "keywords": [],
   "author": "PSA",

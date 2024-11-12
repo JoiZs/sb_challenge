@@ -18,13 +18,14 @@ datasource db {
 // Book Genre HardCoded 
 enum Genre {
   FANTASY
-  SCIENCEFICTION
+  DRAMA
   DYSTOPIAN
   ADVENTURE
   ROMANCE
   MYSTERY
   HORROR
   THRILLER
+  SCIENCEFICTION
   HISTORIALFICTION
   CHILDRENFICTION
 }
@@ -54,26 +55,24 @@ model Publisher {
 model Book {
   book_id               String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   title                 String
-  author                Author     @relation(fields: [authorAuthor_id], references: [author_id])
   publication_date      DateTime
-  publisher             Publisher  @relation(fields: [publisherPublisher_id], references: [publisher_id])
   isbn                  String
   genre                 Genre[]
   created_at            DateTime   @default(now())
   updated_at            DateTime   @updatedAt
-  author_id             String
-  publisherPublisher_id String     @db.Uuid
-  authorAuthor_id       String     @db.Uuid
   Inventory             Inventory?
+  Author                Author?    @relation(fields: [authorAuthor_id], references: [author_id])
+  authorAuthor_id       String?    @db.Uuid
+  Publisher             Publisher? @relation(fields: [publisherPublisher_id], references: [publisher_id])
+  publisherPublisher_id String?    @db.Uuid
 }
 
 // DB Inventory Model
 model Inventory {
-  entry_id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  book            Book     @relation(fields: [bookBook_id], references: [book_id])
-  quantity        Int
-  created_at      DateTime @default(now())
-  updated_at      DateTime @updatedAt
-  authorAuthor_id String   @db.Uuid
-  bookBook_id     String   @unique @db.Uuid
+  entry_id    String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  book        Book     @relation(fields: [bookBook_id], references: [book_id])
+  quantity    Int
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+  bookBook_id String   @unique @db.Uuid
 }

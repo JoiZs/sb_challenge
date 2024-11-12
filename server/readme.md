@@ -28,6 +28,7 @@ CONTAINER ID  IMAGE         COMMAND             CREATED      STATUS           PO
 ![DB_schema_image](./assets/sbC_db.drawio.png)
 Apply DB Migration & Schema
 _CMD:_
+_note: start with npm run_
 
 - **p-migrate**
   (make migration)
@@ -35,3 +36,5 @@ _CMD:_
   (apply the migration)
 - **p-gen**
   (generate Graphql schema)
+- p-seed
+  (seeding data)
