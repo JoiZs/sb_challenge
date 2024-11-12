@@ -5,7 +5,10 @@
   "scripts": {
     "start": "node ./dist/index.js",
     "build": "tsc",
-    "dev": "nodemon src/index.ts"
+    "dev": "nodemon src/index.ts",
+    "p-migrate": "prisma migrate dev --create-only --schema ./src/model/schema.prisma",
+    "p-migrate-deploy": "prisma migrate deploy --schema ./src/model/schema.prisma",
+    "p-gen": "prisma generate --schema ./src/model/schema.prisma"
   },
   "keywords": [],
   "author": "PSA",
@@ -17,5 +20,14 @@
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "@apollo/server": "^4.11.2",
+    "graphql": "^16.9.0",
+    "graphql-scalars": "^1.23.0",
+    "prisma": "^5.22.0",
+    "reflect-metadata": "^0.2.2",
+    "type-graphql": "^2.0.0-rc.2",
+    "typegraphql-prisma": "^0.28.0"
   }
 }

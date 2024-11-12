@@ -1,0 +1,79 @@
+// generate prisma client lib
+generator client {
+  provider = "prisma-client-js"
+}
+
+// generate prisma type-graphql bk
+generator typegraphql {
+  provider           = "typegraphql-prisma"
+  output             = "./generated/type-graphql"
+  emitTranspiledCode = true
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Book Genre HardCoded 
+enum Genre {
+  FANTASY
+  SCIENCEFICTION
+  DYSTOPIAN
+  ADVENTURE
+  ROMANCE
+  MYSTERY
+  HORROR
+  THRILLER
+  HISTORIALFICTION
+  CHILDRENFICTION
+}
+
+// DB Author Model
+model Author {
+  author_id  String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name       String
+  biography  String?
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  Book       Book[]
+}
+
+// DB Publisher Model
+model Publisher {
+  publisher_id   String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name           String
+  address        String
+  contact_number String?
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+  Book           Book[]
+}
+
+// DB Book Model
+model Book {
+  book_id               String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title                 String
+  author                Author     @relation(fields: [authorAuthor_id], references: [author_id])
+  publication_date      DateTime
+  publisher             Publisher  @relation(fields: [publisherPublisher_id], references: [publisher_id])
+  isbn                  String
+  genre                 Genre[]
+  created_at            DateTime   @default(now())
+  updated_at            DateTime   @updatedAt
+  author_id             String
+  publisherPublisher_id String     @db.Uuid
+  authorAuthor_id       String     @db.Uuid
+  Inventory             Inventory?
+}
+
+// DB Inventory Model
+model Inventory {
+  entry_id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  book            Book     @relation(fields: [bookBook_id], references: [book_id])
+  quantity        Int
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+  authorAuthor_id String   @db.Uuid
+  bookBook_id     String   @unique @db.Uuid
+}
