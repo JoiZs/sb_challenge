@@ -30,8 +30,8 @@ Apply DB Migration & Schema
 _CMD:_
 
 - **p-migrate**
-  make migration
+  (make migration)
 - **p-migrate-deploy**
-  apply the migration
+  (apply the migration)
 - **p-gen**
-  generate Graphql schema
+  (generate Graphql schema)
