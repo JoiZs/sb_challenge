@@ -1,11 +1,11 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
+// generate prisma client lib
 generator client {
   provider = "prisma-client-js"
+}
+
+// generate prisma type-graphql bk
+generator typegraphql {
+  provider = "typegraphql-prisma"
 }
 
 datasource db {
@@ -13,6 +13,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// Book Genre HardCoded 
 enum Genre {
   FANTASY
   SCIENCEFICTION
@@ -26,6 +27,7 @@ enum Genre {
   CHILDRENFICTION
 }
 
+// DB Author Model
 model Author {
   author_id  String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name       String
@@ -35,6 +37,7 @@ model Author {
   Book       Book[]
 }
 
+// DB Publisher Model
 model Publisher {
   publisher_id   String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   name           String
@@ -45,22 +48,24 @@ model Publisher {
   Book           Book[]
 }
 
+// DB Book Model
 model Book {
-  book_id               String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  book_id               String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   title                 String
-  author                Author      @relation(fields: [authorAuthor_id], references: [author_id])
+  author                Author     @relation(fields: [authorAuthor_id], references: [author_id])
   publication_date      DateTime
-  publisher             Publisher   @relation(fields: [publisherPublisher_id], references: [publisher_id])
+  publisher             Publisher  @relation(fields: [publisherPublisher_id], references: [publisher_id])
   isbn                  String
   genre                 Genre[]
-  created_at            DateTime    @default(now())
-  updated_at            DateTime    @updatedAt
+  created_at            DateTime   @default(now())
+  updated_at            DateTime   @updatedAt
   author_id             String
-  Inventory             Inventory[]
-  publisherPublisher_id String      @db.Uuid
-  authorAuthor_id       String      @db.Uuid
+  publisherPublisher_id String     @db.Uuid
+  authorAuthor_id       String     @db.Uuid
+  Inventory             Inventory?
 }
 
+// DB Inventory Model
 model Inventory {
   entry_id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   book            Book     @relation(fields: [bookBook_id], references: [book_id])
@@ -68,5 +73,5 @@ model Inventory {
   created_at      DateTime @default(now())
   updated_at      DateTime @updatedAt
   authorAuthor_id String   @db.Uuid
-  bookBook_id     String   @db.Uuid
+  bookBook_id     String   @unique @db.Uuid
 }
