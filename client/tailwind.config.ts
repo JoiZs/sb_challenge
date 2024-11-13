@@ -9,10 +9,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: "#F3F0F0",
+        foreground: "#737373",
+        primary: "#4A27B492",
+        secondary: "#B0B0B0",
+        icon: "#8B8B8B",
+        line: "#E9E9E9",
+        tbhead: "#FAFAFA",
       },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 } satisfies Config;
