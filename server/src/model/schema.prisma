@@ -5,8 +5,9 @@ generator client {
 
 // generate prisma type-graphql bk
 generator typegraphql {
-  provider = "typegraphql-prisma"
-  output   = "../../node_modules/@generated/type-graphql"
+  provider           = "typegraphql-prisma"
+  output             = "../../node_modules/@generated/type-graphql"
+  emitTranspiledCode = true
 }
 
 datasource db {
