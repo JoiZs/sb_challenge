@@ -4,7 +4,10 @@ const createApolloClient = () =>
   new ApolloClient({
     cache: new InMemoryCache(),
     link: new HttpLink({
-      uri: "http://localhost:4567",
+      uri:
+        process.env.NODE_ENV == "production"
+          ? "https://sbc.pyaesoneaung.com/api"
+          : "http://localhost:4567",
     }),
   });
 
