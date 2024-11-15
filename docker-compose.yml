@@ -17,6 +17,8 @@ services:
     build: ./client/
     depends_on:
       - sbc-server
+    ports:
+      - "3000:3000"
     networks:
       - sbc-net
 
@@ -24,9 +26,13 @@ services:
     build: ./server/
     depends_on:
       - sbc-db
+    ports:
+      - "4567:4567"
     environment:
       PORT: ${PORT}
-      DATABASE_URL: ${DATABASE_URL}
+      DATABASE_URL: postgresql://${PG_USER}:${PG_PASSWORD}@sbc-db:5432/${PG_DB}?schema=public
+    command: >
+      bash -c "npm run p-migrate-deploy && npm start"
     networks:
       - sbc-net
 
