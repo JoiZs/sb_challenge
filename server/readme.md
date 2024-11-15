@@ -30,6 +30,8 @@ Apply DB Migration & Schema
 _CMD:_
 _note: start with npm run_
 
+- p-reset
+  (reset migration)
 - **p-migrate**
   (make migration)
 - **p-migrate-deploy**

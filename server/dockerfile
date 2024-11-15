@@ -1,0 +1,22 @@
+FROM node:20.18.0
+
+WORKDIR /usr/src/sbc/server
+
+COPY package.json ./
+COPY package-lock.json ./
+
+RUN npm i
+
+COPY . ./
+
+# RUN npm run p-reset
+# RUN npm run p-migrate
+# RUN npm run p-migrate-deploy
+RUN npm run p-gen
+# RUN npm run p-seed
+RUN npm run build
+
+
+EXPOSE 4567
+
+CMD ["npm", "start"]
