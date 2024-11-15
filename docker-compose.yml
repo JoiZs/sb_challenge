@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  sbc-db:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DB}
+    networks:
+      - sbc-net
+
+  sbc-client:
+    build: ./client/
+    depends_on:
+      - sbc-server
+    ports:
+      - "3000:3000"
+    networks:
+      - sbc-net
+
+  sbc-server:
+    build: ./server/
+    depends_on:
+      - sbc-db
+    ports:
+      - "4567:4567"
+    environment:
+      PORT: ${PORT}
+      DATABASE_URL: postgresql://${PG_USER}:${PG_PASSWORD}@sbc-db:5432/${PG_DB}?schema=public
+    command: >
+      bash -c "npm run p-migrate-deploy && npm start"
+    networks:
+      - sbc-net
+
+networks:
+  sbc-net:
+    driver: bridge
