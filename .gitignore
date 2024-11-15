@@ -1,1 +1,4 @@
 .env.prod
+accounts/
+renewal
+renewal-hooks
