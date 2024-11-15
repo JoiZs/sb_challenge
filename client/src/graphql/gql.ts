@@ -1138,52 +1138,484 @@ export type UuidWithAggregatesFilter = {
   notIn?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
-export type AuthorsQueryVariables = Exact<{ [key: string]: never; }>;
+export type CreateOneAuthorMutationVariables = Exact<{
+  data: AuthorCreateInput;
+}>;
 
 
-export type AuthorsQuery = { __typename?: 'Query', authors: Array<{ __typename?: 'Author', author_id: string, name: string, biography?: string | null, created_at: any, updated_at: any }> };
+export type CreateOneAuthorMutation = { __typename?: 'Mutation', createOneAuthor: { __typename?: 'Author', author_id: string, name: string, biography?: string | null, _count?: { __typename?: 'AuthorCount', Inventory: number } | null } };
+
+export type CreateOneInventoryMutationVariables = Exact<{
+  data: InventoryCreateInput;
+}>;
 
 
-export const AuthorsDocument = gql`
-    query Authors {
-  authors {
+export type CreateOneInventoryMutation = { __typename?: 'Mutation', createOneInventory: { __typename?: 'Inventory', title: string, entry_id: string, genre: Array<Genre>, isbn: string, publication_date: any, author: { __typename?: 'Author', name: string } } };
+
+export type DeleteManyAuthorMutationVariables = Exact<{
+  where?: InputMaybe<AuthorWhereInput>;
+}>;
+
+
+export type DeleteManyAuthorMutation = { __typename?: 'Mutation', deleteManyAuthor: { __typename?: 'AffectedRowsOutput', count: number } };
+
+export type DeleteManyInventoryMutationVariables = Exact<{
+  where?: InputMaybe<InventoryWhereInput>;
+}>;
+
+
+export type DeleteManyInventoryMutation = { __typename?: 'Mutation', deleteManyInventory: { __typename?: 'AffectedRowsOutput', count: number } };
+
+export type UpdateOneAuthorMutationVariables = Exact<{
+  data: AuthorUpdateInput;
+  where: AuthorWhereUniqueInput;
+}>;
+
+
+export type UpdateOneAuthorMutation = { __typename?: 'Mutation', updateOneAuthor?: { __typename?: 'Author', author_id: string, biography?: string | null, name: string } | null };
+
+export type UpdateOneInventoryMutationVariables = Exact<{
+  data: InventoryUpdateInput;
+  where: InventoryWhereUniqueInput;
+}>;
+
+
+export type UpdateOneInventoryMutation = { __typename?: 'Mutation', updateOneInventory?: { __typename?: 'Inventory', title: string, isbn: string, genre: Array<Genre>, publication_date: any, entry_id: string, author: { __typename?: 'Author', name: string } } | null };
+
+export type QueryBooksQueryVariables = Exact<{
+  take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<InventoryOrderByWithRelationInput> | InventoryOrderByWithRelationInput>;
+  where?: InputMaybe<InventoryWhereInput>;
+}>;
+
+
+export type QueryBooksQuery = { __typename?: 'Query', inventories: Array<{ __typename?: 'Inventory', entry_id: string, title: string, genre: Array<Genre>, publication_date: any, isbn: string, author: { __typename?: 'Author', name: string } }> };
+
+export type QueryAuthorsQueryVariables = Exact<{
+  take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Array<AuthorOrderByWithRelationInput> | AuthorOrderByWithRelationInput>;
+  where?: InputMaybe<AuthorWhereInput>;
+}>;
+
+
+export type QueryAuthorsQuery = { __typename?: 'Query', authors: Array<{ __typename?: 'Author', author_id: string, name: string, biography?: string | null, _count?: { __typename?: 'AuthorCount', Inventory: number } | null }> };
+
+export type AuthorSearchQueryVariables = Exact<{
+  where?: InputMaybe<AuthorWhereInput>;
+  take?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type AuthorSearchQuery = { __typename?: 'Query', authors: Array<{ __typename?: 'Author', name: string, author_id: string }> };
+
+export type AuthorCheckQueryVariables = Exact<{
+  where?: InputMaybe<AuthorWhereInput>;
+}>;
+
+
+export type AuthorCheckQuery = { __typename?: 'Query', findFirstAuthorOrThrow?: { __typename?: 'Author', author_id: string } | null };
+
+
+export const CreateOneAuthorDocument = gql`
+    mutation CreateOneAuthor($data: AuthorCreateInput!) {
+  createOneAuthor(data: $data) {
     author_id
     name
     biography
-    created_at
-    updated_at
+    _count {
+      Inventory
+    }
+  }
+}
+    `;
+export type CreateOneAuthorMutationFn = Apollo.MutationFunction<CreateOneAuthorMutation, CreateOneAuthorMutationVariables>;
+
+/**
+ * __useCreateOneAuthorMutation__
+ *
+ * To run a mutation, you first call `useCreateOneAuthorMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateOneAuthorMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createOneAuthorMutation, { data, loading, error }] = useCreateOneAuthorMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateOneAuthorMutation(baseOptions?: Apollo.MutationHookOptions<CreateOneAuthorMutation, CreateOneAuthorMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateOneAuthorMutation, CreateOneAuthorMutationVariables>(CreateOneAuthorDocument, options);
+      }
+export type CreateOneAuthorMutationHookResult = ReturnType<typeof useCreateOneAuthorMutation>;
+export type CreateOneAuthorMutationResult = Apollo.MutationResult<CreateOneAuthorMutation>;
+export type CreateOneAuthorMutationOptions = Apollo.BaseMutationOptions<CreateOneAuthorMutation, CreateOneAuthorMutationVariables>;
+export const CreateOneInventoryDocument = gql`
+    mutation CreateOneInventory($data: InventoryCreateInput!) {
+  createOneInventory(data: $data) {
+    author {
+      name
+    }
+    title
+    entry_id
+    genre
+    isbn
+    publication_date
+  }
+}
+    `;
+export type CreateOneInventoryMutationFn = Apollo.MutationFunction<CreateOneInventoryMutation, CreateOneInventoryMutationVariables>;
+
+/**
+ * __useCreateOneInventoryMutation__
+ *
+ * To run a mutation, you first call `useCreateOneInventoryMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateOneInventoryMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createOneInventoryMutation, { data, loading, error }] = useCreateOneInventoryMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useCreateOneInventoryMutation(baseOptions?: Apollo.MutationHookOptions<CreateOneInventoryMutation, CreateOneInventoryMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateOneInventoryMutation, CreateOneInventoryMutationVariables>(CreateOneInventoryDocument, options);
+      }
+export type CreateOneInventoryMutationHookResult = ReturnType<typeof useCreateOneInventoryMutation>;
+export type CreateOneInventoryMutationResult = Apollo.MutationResult<CreateOneInventoryMutation>;
+export type CreateOneInventoryMutationOptions = Apollo.BaseMutationOptions<CreateOneInventoryMutation, CreateOneInventoryMutationVariables>;
+export const DeleteManyAuthorDocument = gql`
+    mutation DeleteManyAuthor($where: AuthorWhereInput) {
+  deleteManyAuthor(where: $where) {
+    count
+  }
+}
+    `;
+export type DeleteManyAuthorMutationFn = Apollo.MutationFunction<DeleteManyAuthorMutation, DeleteManyAuthorMutationVariables>;
+
+/**
+ * __useDeleteManyAuthorMutation__
+ *
+ * To run a mutation, you first call `useDeleteManyAuthorMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteManyAuthorMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteManyAuthorMutation, { data, loading, error }] = useDeleteManyAuthorMutation({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useDeleteManyAuthorMutation(baseOptions?: Apollo.MutationHookOptions<DeleteManyAuthorMutation, DeleteManyAuthorMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteManyAuthorMutation, DeleteManyAuthorMutationVariables>(DeleteManyAuthorDocument, options);
+      }
+export type DeleteManyAuthorMutationHookResult = ReturnType<typeof useDeleteManyAuthorMutation>;
+export type DeleteManyAuthorMutationResult = Apollo.MutationResult<DeleteManyAuthorMutation>;
+export type DeleteManyAuthorMutationOptions = Apollo.BaseMutationOptions<DeleteManyAuthorMutation, DeleteManyAuthorMutationVariables>;
+export const DeleteManyInventoryDocument = gql`
+    mutation DeleteManyInventory($where: InventoryWhereInput) {
+  deleteManyInventory(where: $where) {
+    count
+  }
+}
+    `;
+export type DeleteManyInventoryMutationFn = Apollo.MutationFunction<DeleteManyInventoryMutation, DeleteManyInventoryMutationVariables>;
+
+/**
+ * __useDeleteManyInventoryMutation__
+ *
+ * To run a mutation, you first call `useDeleteManyInventoryMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDeleteManyInventoryMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [deleteManyInventoryMutation, { data, loading, error }] = useDeleteManyInventoryMutation({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useDeleteManyInventoryMutation(baseOptions?: Apollo.MutationHookOptions<DeleteManyInventoryMutation, DeleteManyInventoryMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<DeleteManyInventoryMutation, DeleteManyInventoryMutationVariables>(DeleteManyInventoryDocument, options);
+      }
+export type DeleteManyInventoryMutationHookResult = ReturnType<typeof useDeleteManyInventoryMutation>;
+export type DeleteManyInventoryMutationResult = Apollo.MutationResult<DeleteManyInventoryMutation>;
+export type DeleteManyInventoryMutationOptions = Apollo.BaseMutationOptions<DeleteManyInventoryMutation, DeleteManyInventoryMutationVariables>;
+export const UpdateOneAuthorDocument = gql`
+    mutation UpdateOneAuthor($data: AuthorUpdateInput!, $where: AuthorWhereUniqueInput!) {
+  updateOneAuthor(data: $data, where: $where) {
+    author_id
+    biography
+    name
+  }
+}
+    `;
+export type UpdateOneAuthorMutationFn = Apollo.MutationFunction<UpdateOneAuthorMutation, UpdateOneAuthorMutationVariables>;
+
+/**
+ * __useUpdateOneAuthorMutation__
+ *
+ * To run a mutation, you first call `useUpdateOneAuthorMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateOneAuthorMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateOneAuthorMutation, { data, loading, error }] = useUpdateOneAuthorMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useUpdateOneAuthorMutation(baseOptions?: Apollo.MutationHookOptions<UpdateOneAuthorMutation, UpdateOneAuthorMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateOneAuthorMutation, UpdateOneAuthorMutationVariables>(UpdateOneAuthorDocument, options);
+      }
+export type UpdateOneAuthorMutationHookResult = ReturnType<typeof useUpdateOneAuthorMutation>;
+export type UpdateOneAuthorMutationResult = Apollo.MutationResult<UpdateOneAuthorMutation>;
+export type UpdateOneAuthorMutationOptions = Apollo.BaseMutationOptions<UpdateOneAuthorMutation, UpdateOneAuthorMutationVariables>;
+export const UpdateOneInventoryDocument = gql`
+    mutation UpdateOneInventory($data: InventoryUpdateInput!, $where: InventoryWhereUniqueInput!) {
+  updateOneInventory(data: $data, where: $where) {
+    title
+    author {
+      name
+    }
+    isbn
+    genre
+    publication_date
+    entry_id
+  }
+}
+    `;
+export type UpdateOneInventoryMutationFn = Apollo.MutationFunction<UpdateOneInventoryMutation, UpdateOneInventoryMutationVariables>;
+
+/**
+ * __useUpdateOneInventoryMutation__
+ *
+ * To run a mutation, you first call `useUpdateOneInventoryMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateOneInventoryMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateOneInventoryMutation, { data, loading, error }] = useUpdateOneInventoryMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useUpdateOneInventoryMutation(baseOptions?: Apollo.MutationHookOptions<UpdateOneInventoryMutation, UpdateOneInventoryMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateOneInventoryMutation, UpdateOneInventoryMutationVariables>(UpdateOneInventoryDocument, options);
+      }
+export type UpdateOneInventoryMutationHookResult = ReturnType<typeof useUpdateOneInventoryMutation>;
+export type UpdateOneInventoryMutationResult = Apollo.MutationResult<UpdateOneInventoryMutation>;
+export type UpdateOneInventoryMutationOptions = Apollo.BaseMutationOptions<UpdateOneInventoryMutation, UpdateOneInventoryMutationVariables>;
+export const QueryBooksDocument = gql`
+    query QueryBooks($take: Int, $skip: Int, $orderBy: [InventoryOrderByWithRelationInput!], $where: InventoryWhereInput) {
+  inventories(take: $take, skip: $skip, orderBy: $orderBy, where: $where) {
+    entry_id
+    title
+    author {
+      name
+    }
+    genre
+    publication_date
+    isbn
   }
 }
     `;
 
 /**
- * __useAuthorsQuery__
+ * __useQueryBooksQuery__
  *
- * To run a query within a React component, call `useAuthorsQuery` and pass it any options that fit your needs.
- * When your component renders, `useAuthorsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useQueryBooksQuery` and pass it any options that fit your needs.
+ * When your component renders, `useQueryBooksQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useAuthorsQuery({
+ * const { data, loading, error } = useQueryBooksQuery({
  *   variables: {
+ *      take: // value for 'take'
+ *      skip: // value for 'skip'
+ *      orderBy: // value for 'orderBy'
+ *      where: // value for 'where'
  *   },
  * });
  */
-export function useAuthorsQuery(baseOptions?: Apollo.QueryHookOptions<AuthorsQuery, AuthorsQueryVariables>) {
+export function useQueryBooksQuery(baseOptions?: Apollo.QueryHookOptions<QueryBooksQuery, QueryBooksQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<AuthorsQuery, AuthorsQueryVariables>(AuthorsDocument, options);
+        return Apollo.useQuery<QueryBooksQuery, QueryBooksQueryVariables>(QueryBooksDocument, options);
       }
-export function useAuthorsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AuthorsQuery, AuthorsQueryVariables>) {
+export function useQueryBooksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<QueryBooksQuery, QueryBooksQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<AuthorsQuery, AuthorsQueryVariables>(AuthorsDocument, options);
+          return Apollo.useLazyQuery<QueryBooksQuery, QueryBooksQueryVariables>(QueryBooksDocument, options);
         }
-export function useAuthorsSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<AuthorsQuery, AuthorsQueryVariables>) {
+export function useQueryBooksSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<QueryBooksQuery, QueryBooksQueryVariables>) {
           const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
-          return Apollo.useSuspenseQuery<AuthorsQuery, AuthorsQueryVariables>(AuthorsDocument, options);
+          return Apollo.useSuspenseQuery<QueryBooksQuery, QueryBooksQueryVariables>(QueryBooksDocument, options);
         }
-export type AuthorsQueryHookResult = ReturnType<typeof useAuthorsQuery>;
-export type AuthorsLazyQueryHookResult = ReturnType<typeof useAuthorsLazyQuery>;
-export type AuthorsSuspenseQueryHookResult = ReturnType<typeof useAuthorsSuspenseQuery>;
-export type AuthorsQueryResult = Apollo.QueryResult<AuthorsQuery, AuthorsQueryVariables>;
+export type QueryBooksQueryHookResult = ReturnType<typeof useQueryBooksQuery>;
+export type QueryBooksLazyQueryHookResult = ReturnType<typeof useQueryBooksLazyQuery>;
+export type QueryBooksSuspenseQueryHookResult = ReturnType<typeof useQueryBooksSuspenseQuery>;
+export type QueryBooksQueryResult = Apollo.QueryResult<QueryBooksQuery, QueryBooksQueryVariables>;
+export const QueryAuthorsDocument = gql`
+    query QueryAuthors($take: Int, $skip: Int, $orderBy: [AuthorOrderByWithRelationInput!], $where: AuthorWhereInput) {
+  authors(take: $take, skip: $skip, orderBy: $orderBy, where: $where) {
+    author_id
+    name
+    biography
+    _count {
+      Inventory
+    }
+  }
+}
+    `;
+
+/**
+ * __useQueryAuthorsQuery__
+ *
+ * To run a query within a React component, call `useQueryAuthorsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useQueryAuthorsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useQueryAuthorsQuery({
+ *   variables: {
+ *      take: // value for 'take'
+ *      skip: // value for 'skip'
+ *      orderBy: // value for 'orderBy'
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useQueryAuthorsQuery(baseOptions?: Apollo.QueryHookOptions<QueryAuthorsQuery, QueryAuthorsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<QueryAuthorsQuery, QueryAuthorsQueryVariables>(QueryAuthorsDocument, options);
+      }
+export function useQueryAuthorsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<QueryAuthorsQuery, QueryAuthorsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<QueryAuthorsQuery, QueryAuthorsQueryVariables>(QueryAuthorsDocument, options);
+        }
+export function useQueryAuthorsSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<QueryAuthorsQuery, QueryAuthorsQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<QueryAuthorsQuery, QueryAuthorsQueryVariables>(QueryAuthorsDocument, options);
+        }
+export type QueryAuthorsQueryHookResult = ReturnType<typeof useQueryAuthorsQuery>;
+export type QueryAuthorsLazyQueryHookResult = ReturnType<typeof useQueryAuthorsLazyQuery>;
+export type QueryAuthorsSuspenseQueryHookResult = ReturnType<typeof useQueryAuthorsSuspenseQuery>;
+export type QueryAuthorsQueryResult = Apollo.QueryResult<QueryAuthorsQuery, QueryAuthorsQueryVariables>;
+export const AuthorSearchDocument = gql`
+    query AuthorSearch($where: AuthorWhereInput, $take: Int) {
+  authors(where: $where, take: $take) {
+    name
+    author_id
+  }
+}
+    `;
+
+/**
+ * __useAuthorSearchQuery__
+ *
+ * To run a query within a React component, call `useAuthorSearchQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAuthorSearchQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAuthorSearchQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *      take: // value for 'take'
+ *   },
+ * });
+ */
+export function useAuthorSearchQuery(baseOptions?: Apollo.QueryHookOptions<AuthorSearchQuery, AuthorSearchQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AuthorSearchQuery, AuthorSearchQueryVariables>(AuthorSearchDocument, options);
+      }
+export function useAuthorSearchLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AuthorSearchQuery, AuthorSearchQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AuthorSearchQuery, AuthorSearchQueryVariables>(AuthorSearchDocument, options);
+        }
+export function useAuthorSearchSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<AuthorSearchQuery, AuthorSearchQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<AuthorSearchQuery, AuthorSearchQueryVariables>(AuthorSearchDocument, options);
+        }
+export type AuthorSearchQueryHookResult = ReturnType<typeof useAuthorSearchQuery>;
+export type AuthorSearchLazyQueryHookResult = ReturnType<typeof useAuthorSearchLazyQuery>;
+export type AuthorSearchSuspenseQueryHookResult = ReturnType<typeof useAuthorSearchSuspenseQuery>;
+export type AuthorSearchQueryResult = Apollo.QueryResult<AuthorSearchQuery, AuthorSearchQueryVariables>;
+export const AuthorCheckDocument = gql`
+    query AuthorCheck($where: AuthorWhereInput) {
+  findFirstAuthorOrThrow(where: $where) {
+    author_id
+  }
+}
+    `;
+
+/**
+ * __useAuthorCheckQuery__
+ *
+ * To run a query within a React component, call `useAuthorCheckQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAuthorCheckQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAuthorCheckQuery({
+ *   variables: {
+ *      where: // value for 'where'
+ *   },
+ * });
+ */
+export function useAuthorCheckQuery(baseOptions?: Apollo.QueryHookOptions<AuthorCheckQuery, AuthorCheckQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AuthorCheckQuery, AuthorCheckQueryVariables>(AuthorCheckDocument, options);
+      }
+export function useAuthorCheckLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AuthorCheckQuery, AuthorCheckQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AuthorCheckQuery, AuthorCheckQueryVariables>(AuthorCheckDocument, options);
+        }
+export function useAuthorCheckSuspenseQuery(baseOptions?: Apollo.SkipToken | Apollo.SuspenseQueryHookOptions<AuthorCheckQuery, AuthorCheckQueryVariables>) {
+          const options = baseOptions === Apollo.skipToken ? baseOptions : {...defaultOptions, ...baseOptions}
+          return Apollo.useSuspenseQuery<AuthorCheckQuery, AuthorCheckQueryVariables>(AuthorCheckDocument, options);
+        }
+export type AuthorCheckQueryHookResult = ReturnType<typeof useAuthorCheckQuery>;
+export type AuthorCheckLazyQueryHookResult = ReturnType<typeof useAuthorCheckLazyQuery>;
+export type AuthorCheckSuspenseQueryHookResult = ReturnType<typeof useAuthorCheckSuspenseQuery>;
+export type AuthorCheckQueryResult = Apollo.QueryResult<AuthorCheckQuery, AuthorCheckQueryVariables>;

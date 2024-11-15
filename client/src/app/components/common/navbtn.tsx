@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 
 type Props = {
   Icon: React.ForwardRefExoticComponent<
@@ -10,7 +10,7 @@ type Props = {
   title: string;
   isOpen?: boolean;
   className?: string | undefined;
-  action?: () => void | undefined;
+  action?: MouseEventHandler | undefined;
 };
 
 const NavBtn = ({ action, Icon, title, isOpen = false, className }: Props) => {

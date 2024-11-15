@@ -1,0 +1,62 @@
+mutation CreateOneAuthor($data: AuthorCreateInput!) {
+  createOneAuthor(data: $data) {
+    author_id
+    name
+    biography
+    _count {
+      Inventory
+    }
+  }
+}
+
+mutation CreateOneInventory($data: InventoryCreateInput!) {
+  createOneInventory(data: $data) {
+    author {
+      name
+    }
+    title
+    entry_id
+    genre
+    isbn
+    publication_date
+  }
+}
+
+mutation DeleteManyAuthor($where: AuthorWhereInput) {
+  deleteManyAuthor(where: $where) {
+    count
+  }
+}
+
+mutation DeleteManyInventory($where: InventoryWhereInput) {
+  deleteManyInventory(where: $where) {
+    count
+  }
+}
+
+mutation UpdateOneAuthor(
+  $data: AuthorUpdateInput!
+  $where: AuthorWhereUniqueInput!
+) {
+  updateOneAuthor(data: $data, where: $where) {
+    author_id
+    biography
+    name
+  }
+}
+
+mutation UpdateOneInventory(
+  $data: InventoryUpdateInput!
+  $where: InventoryWhereUniqueInput!
+) {
+  updateOneInventory(data: $data, where: $where) {
+    title
+    author {
+      name
+    }
+    isbn
+    genre
+    publication_date
+    entry_id
+  }
+}

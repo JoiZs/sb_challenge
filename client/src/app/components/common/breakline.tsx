@@ -1,8 +1,6 @@
 import React from "react";
 
-type Props = {};
-
-const BreakLine = (props: Props) => {
+const BreakLine = () => {
   return <div className="w-full border-line border my-2"></div>;
 };
 

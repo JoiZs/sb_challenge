@@ -1,9 +1,69 @@
-query Authors {
-  authors {
+# {
+#   "take": null,
+#   "skip": null,
+#   "orderBy": [
+#     {
+#       "title": null,
+#       "publication_date": null,
+#       "author": {
+#         "name": null
+#       }
+#     }
+#   ]
+# }
+#
+query QueryBooks(
+  $take: Int
+  $skip: Int
+  $orderBy: [InventoryOrderByWithRelationInput!]
+  $where: InventoryWhereInput
+) {
+  inventories(take: $take, skip: $skip, orderBy: $orderBy, where: $where) {
+    entry_id
+    title
+    author {
+      name
+    }
+    genre
+    publication_date
+    isbn
+  }
+}
+
+# {
+#   "take": 15,
+#   "skip": 0,
+#   "orderBy": [
+#     {
+#       "name": null
+#     }
+#   ],
+# }
+query QueryAuthors(
+  $take: Int
+  $skip: Int
+  $orderBy: [AuthorOrderByWithRelationInput!]
+  $where: AuthorWhereInput
+) {
+  authors(take: $take, skip: $skip, orderBy: $orderBy, where: $where) {
     author_id
     name
     biography
-    created_at
-    updated_at
+    _count {
+      Inventory
+    }
+  }
+}
+
+query AuthorSearch($where: AuthorWhereInput, $take: Int) {
+  authors(where: $where, take: $take) {
+    name
+    author_id
+  }
+}
+
+query AuthorCheck($where: AuthorWhereInput) {
+  findFirstAuthorOrThrow(where: $where) {
+    author_id
   }
 }
