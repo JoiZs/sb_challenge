@@ -36,6 +36,37 @@ services:
     networks:
       - sbc-net
 
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+      - ./nginx/reload-cert.sh:/docker-entrypoint.d/reload-cert.sh:ro
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    command: certonly --standalone --non-interactive --email psapsa190@gmail.com --agree-tos --preferred-challenges http --dry-run -d sbc.pyaesoneaung.com -d www.sbc.pyaesoneaung.com
+    networks:
+      - sbc-net
+
+  cret-renew:
+    container_name: certnew
+    build:
+      context: .
+      dockerfile: ./certbot/renew/dockerfile
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+
 networks:
   sbc-net:
     driver: bridge
