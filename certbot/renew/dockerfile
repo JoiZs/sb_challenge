@@ -1,7 +1,9 @@
 FROM certbot/certbot:latest
 
-COPY cert-renew-crontab /etc/crontabs
 
-RUN crontab /etc/crontabs/cert-renew-crontab
+COPY ./cert-renew-crontab /etc/crontabs/cert-renew-crontab
 
-ENTRYPOINT [ "crond", "-f" ]
+RUN chmod 0644 /etc/crontabs/cert-renew-crontab && crontab /etc/crontabs/cert-renew-crontab
+
+ENTRYPOINT ["crond", "-f"]
+
